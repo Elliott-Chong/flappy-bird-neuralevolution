@@ -1,6 +1,6 @@
 let population;
 let pipes = [];
-let POPULATION_SIZE = 100;
+let POPULATION_SIZE = 500;
 let MUTATION_RATE = 0.01;
 let counter = 0;
 
@@ -21,7 +21,7 @@ function setup() {
 function draw() {
   background(0);
   for (let i = 0; i < slider.value(); i++) {
-    if (counter % 80 === 0) {
+    if (counter % 100 === 0) {
       pipes.push(new Pipe());
     }
     for (let i = 0; i < population.birds.length; i++) {

@@ -9,14 +9,10 @@ class Bird {
     this.radius = 12;
     this.brain;
     if (!brain) {
-      this.brain = new NeuralNetwork();
-      this.brain.input(5);
-      this.brain.add(new Dense(300));
-      this.brain.add(new Dense(2));
+      this.brain = new NeuralNetwork(5, 50, 2);
     } else {
       this.brain = brain;
     }
-    this.brain.compile();
   }
   offScreen() {
     let res = this.y >= height || this.y <= 0;
@@ -28,6 +24,17 @@ class Bird {
     stroke(255);
     fill(150, 100, 0, 50);
     ellipse(this.x, this.y, this.radius * 2, this.radius * 2);
+  }
+
+  mutate(MUTATION_RATE) {
+    function mutate(x) {
+      if (Math.random() < MUTATION_RATE) {
+        return x + randomGaussian(0, 0.1);
+      } else {
+        return x;
+      }
+    }
+    this.brain.mutate(mutate);
   }
 
   think(pipes) {

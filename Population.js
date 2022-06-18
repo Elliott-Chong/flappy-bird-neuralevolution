@@ -19,7 +19,7 @@ class Population {
     for (let i = 0; i < this.POPULATION_SIZE; i++) {
       let parent = this.weightedChoice(this.deadBirds);
       let child = new Bird(parent.brain.copy());
-      child.brain.mutate(this.MUTATION_RATE);
+      child.mutate(this.MUTATION_RATE);
       this.birds.push(child);
     }
     this.deadBirds = [];
